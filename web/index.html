@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    $FLUTTER_BASE_HREF is replaced by `flutter build web --base-href`.
+    Leave it as "/" when the site is hosted at the domain root.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Flutter draws on a canvas, so these tags are most of what
+       Google and link previews will see. Keep them accurate. -->
+  <title>Sri Fin Astra | Chartered Accountants</title>
+  <meta name="description" content="Sri Fin Astra is a Hyderabad based Chartered Accountancy firm offering income tax and GST filing, accounting, audit and business advisory for individuals and businesses.">
+  <meta name="keywords" content="chartered accountant, CA firm, ITR filing, GST registration, GST returns, statutory audit, bookkeeping, business advisory">
+  <meta name="theme-color" content="#1F5C56">
+
+  <!-- Link previews (WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sri Fin Astra | Chartered Accountants">
+  <meta property="og:description" content="Reliable tax, accounting, audit and advisory services for individuals and businesses in Hyderabad.">
+  <!-- TODO: add og:image and og:url once the domain is live -->
+
+  <!-- App install is disabled on purpose: no web manifest and no
+       "add to home screen" meta tags. Build with --pwa-strategy=none. -->
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    /* Cream background while Flutter loads, so there is no white flash. */
+    html, body { margin: 0; background: #FBF8F2; }
+    #loader {
+      position: fixed; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      font-family: Georgia, serif; color: #1F5C56; font-size: 22px;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loader">Sri Fin Astra</div>
+
+  <!-- Plain-text copy for search engines (hidden from visitors). -->
+  <noscript>
+    <h1>Sri Fin Astra - Chartered Accountants</h1>
+    <p>Tax services (ITR filing, GST registration and returns), accounting
+    services, audit and assurance, and business advisory for individuals and
+    businesses across the country.</p>
+  </noscript>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var el = document.getElementById('loader');
+      if (el) el.remove();
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
