@@ -14,9 +14,9 @@ class AboutHero extends StatelessWidget {
       minHeight: 460,
       eyebrow: 'About Us',
       title: 'Building a Stronger\nFinancial Tomorrow',
-      body: '${AppInfo.name} is a Hyderabads based Chartered Accountancy '
-          'firm committed to delivering expert financial, tax and compliance '
-          'solutions for individuals and businesses.',
+      body: '${AppInfo.name} is a Chartered Accountancy firm committed to '
+          'delivering expert financial, tax and compliance solutions for '
+          'individuals and businesses.',
     );
   }
 }

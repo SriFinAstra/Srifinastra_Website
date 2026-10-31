@@ -42,6 +42,7 @@ class ServiceModel {
     required this.icon,
     required this.color,
     required this.image,
+    this.headline,
     this.sections = const [],
   });
 
@@ -65,6 +66,9 @@ class ServiceModel {
   final Color color;
   final String image;
 
+  /// Optional punchy line shown above the title on the detail page.
+  final String? headline;
+
   /// Extra card sections on the detail page (optional).
   final List<ServiceSection> sections;
 
@@ -86,6 +90,11 @@ class ServiceModel {
     'GST Return Filing (GSTR-1 / GSTR-3B)',
     'GSTR-2B & ITC Reconciliation',
     'GSTR-9 Annual Return',
+    'GST Audit',
+    'E-Invoicing & E-Way Bills',
+    'GST Refunds (Exports, Inverted Duty)',
+    'LUT Filing for Exports',
+    'GST Advisory (Composition, Real Estate, Sectors)',
     'GST Cancellation & Amendment',
     'GST Notices & Appeals',
     // Accounting
@@ -100,6 +109,7 @@ class ServiceModel {
     'Company Incorporation',
     'ROC Related Work',
     'Director Appointments & KYC',
+    'Company Closure & Strike-off',
     // Advisory
     'Tax Planning',
     'Tax & Business Advisory',
@@ -119,35 +129,46 @@ class ServiceModel {
   static const List<ServiceModel> all = [
     ServiceModel(
       slug: 'tax-services',
-      title: 'Tax Services',
+      title: 'Income Tax / TDS',
       tagline: 'ITR Filing | TDS | Advance Tax | Appeals',
       summary:
-          'Accurate filings and year-round planning, so you stay compliant '
-          'and pay only what you owe.',
+          'We deliver comprehensive tax compliance and proactive planning '
+          'solutions designed to protect your financial interests, minimize '
+          'liabilities, and ensure seamless alignment with current regulatory '
+          'frameworks.',
       description:
-          'From individual income tax returns to TDS, advance tax and '
-          'appeals, we handle the paperwork, deadlines and follow-ups so '
-          'you can focus on your work. We also help you plan ahead to '
-          'reduce your tax outgo legally.',
+          'Efficient tax management protects your earnings and ensures '
+          'regulatory compliance. We provide full-suite tax services, '
+          'including income tax returns, TDS administration, advance tax '
+          'structuring, and dedicated support for appeals and notices. Our '
+          'experts take complete ownership of documentation, statutory '
+          'deadlines, and departmental follow-ups, delivering tailored '
+          'strategies that legally reduce your tax burden.',
       includes: [
         'Income Tax Return filing for salaried people, professionals, '
             'businesses, investors, NRIs and HUFs',
-        'Revised, belated and nil returns',
-        'TDS return filing',
-        'TDS payment on property sale and purchase, and other transactions',
-        'TDS compliance for employers and contractors',
+        'Regular, belated and revised returns',
+        'Tax planning and advisory for individuals, firms and companies',
+        'New vs old tax regime comparison',
+        'Presumptive taxation advisory',
+        'Capital gains advisory on sale of property, land and shares',
+        'ESOP taxation',
         'Advance tax calculation and payment',
+        'TDS and TCS compliance, including deduction, payment, returns '
+            '(24Q, 26Q, 27Q) and TDS certificates',
         'PAN and TAN services',
-        'Professional tax registration and returns',
-        'Capital gains advisory',
-        'Transfer pricing documentation and compliance',
+        'PF and ESI registration and compliance for employees',
+        'Tax audit under Section 44AB (Forms 3CA/3CB and 3CD)',
+        'NRI taxation, including Form 15CA/15CB and DTAA advisory',
+        'Income tax notice replies, scrutiny and assessment support',
+        'Rectification, refund and reassessment support',
         'Appeals related to tax matters',
-        'Handling income tax notices, with replies and assessment support',
-        'Tax planning and advisory',
       ],
       icon: Icons.receipt_long_outlined,
       color: AppColors.primaryLight,
       image: AppAssets.serviceTax,
+      headline: 'Precise compliance. Strategic optimization. Absolute peace '
+          'of mind.',
       sections: [
         ServiceSection(
           eyebrow: 'Why It Matters',
@@ -280,6 +301,12 @@ class ServiceModel {
         'GSTR-2B reconciliation',
         'Input Tax Credit reconciliation and support',
         'GSTR-9 annual return',
+        'GST audit',
+        'E-invoicing and e-way bill generation',
+        'GST refunds (exports, inverted duty)',
+        'LUT filing for exports',
+        'Composition scheme advice, and GST guidance for real estate and '
+            'other specific sectors',
         'GST cancellation and amendment',
         'GST notice replies and support',
         'GST appeals support',
@@ -287,78 +314,285 @@ class ServiceModel {
       icon: Icons.request_quote_outlined,
       color: Color(0xFFB8860B),
       image: AppAssets.serviceGst,
+      sections: [
+        ServiceSection(
+          eyebrow: 'Why It Matters',
+          title: 'Why GST Compliance Matters',
+          subtitle: 'GST touches every sale and purchase. Getting it right '
+              'keeps your business compliant and your cash flow healthy.',
+          points: [
+            ServicePoint(
+              icon: Icons.verified_outlined,
+              title: 'Stay legally compliant',
+              text: 'Timely registration and returns help you avoid late '
+                  'fees, interest and penalties under GST law.',
+            ),
+            ServicePoint(
+              icon: Icons.account_balance_wallet_outlined,
+              title: 'Claim your input tax credit',
+              text: 'Eligible credit on business purchases lowers your tax '
+                  'cost, but only when your records and returns match.',
+            ),
+            ServicePoint(
+              icon: Icons.compare_arrows_rounded,
+              title: 'Records that match',
+              text: 'Reconciling your books with GSTR-2B and your returns '
+                  'catches mismatches before the department does.',
+            ),
+            ServicePoint(
+              icon: Icons.groups_2_outlined,
+              title: 'Business credibility',
+              text: 'A GST registration lets you issue GST invoices, which '
+                  'many customers and suppliers expect, especially in '
+                  'business-to-business trade.',
+            ),
+            ServicePoint(
+              icon: Icons.notifications_active_outlined,
+              title: 'Fewer notices',
+              text: 'Accurate, on-time filing lowers the chance of notices, '
+                  'and clean records make any reply easier.',
+            ),
+            ServicePoint(
+              icon: Icons.event_available_outlined,
+              title: 'Registration that stays right',
+              text: 'Amendments and cancellations done properly avoid '
+                  'unwanted filing obligations and compliance gaps later.',
+            ),
+          ],
+        ),
+      ],
     ),
     ServiceModel(
       slug: 'accounting-services',
       title: 'Accounting Services',
       tagline: 'Bookkeeping | Payroll & PF/ESI | Reconciliation',
       summary:
-          'Clean, up-to-date books that give you a clear picture of your '
-          'business at any time.',
+          'Clean, compliant, and optimized financials to scale your business '
+          'seamlessly.',
       description:
           'We maintain your books, prepare financial statements and '
           'reconcile your accounts every month, so your numbers are always '
           'ready for decisions, lenders and tax filings.',
       includes: [
-        'Bookkeeping and ledger maintenance',
-        'Account reconciliation (bank, vendor and customer)',
-        'Financial statements (P&L, Balance Sheet)',
-        'Payroll management and processing',
-        'PF and ESI registration, returns and compliance',
-        'Monthly MIS reports for management',
+        'Day-to-day bookkeeping and ledger maintenance',
+        'Accounting software setup and support: Tally, Zoho Books, '
+            'QuickBooks',
+        'Bank reconciliation',
+        'Preparation of financial statements: P&L, balance sheet, cash flow',
+        'Monthly MIS reports',
+        'Payroll processing, including PF, ESI, PT and TDS on salary',
+        'Accounts payable and receivable management',
+        'Fixed asset register and depreciation',
+        'Inventory accounting',
+        'Cleanup of backlog or messy books',
+        'Virtual or outsourced accounting department',
       ],
       icon: Icons.insert_chart_outlined_rounded,
       color: AppColors.accent,
       image: AppAssets.serviceAccounting,
+      sections: [
+        ServiceSection(
+          eyebrow: 'Why It Matters',
+          title: 'Why Proper Accounting Matters',
+          subtitle: 'Good books are more than a tax requirement. They show '
+              'you how your business is really doing.',
+          points: [
+            ServicePoint(
+              icon: Icons.insights_outlined,
+              title: 'Know where you stand',
+              text: 'Up-to-date books show your income, expenses, profit '
+                  'and cash position at any time.',
+            ),
+            ServicePoint(
+              icon: Icons.fact_check_outlined,
+              title: 'Smoother tax and audit',
+              text: 'Organised records make tax filing, GST returns and '
+                  'audits faster, with fewer corrections.',
+            ),
+            ServicePoint(
+              icon: Icons.account_balance_outlined,
+              title: 'Easier funding',
+              text: 'Banks and investors ask for clear financial statements '
+                  'before approving loans or funding.',
+            ),
+            ServicePoint(
+              icon: Icons.manage_search_rounded,
+              title: 'Catch errors early',
+              text: 'Regular reconciliation spots missing entries, duplicate '
+                  'postings and unrecorded charges while they are still '
+                  'easy to fix.',
+            ),
+            ServicePoint(
+              icon: Icons.payments_outlined,
+              title: 'Control your cash flow',
+              text: 'Tracking receivables, payables and payroll helps you '
+                  'plan payments and avoid cash surprises.',
+            ),
+            ServicePoint(
+              icon: Icons.bar_chart_rounded,
+              title: 'Better decisions',
+              text: 'Monthly MIS reports turn numbers into clear insights on '
+                  'margins, costs and performance.',
+            ),
+          ],
+        ),
+      ],
     ),
     ServiceModel(
       slug: 'audit-assurance',
       title: 'Audit & Assurance',
       tagline: 'Statutory Audit | Internal Audit | Compliance',
       summary:
-          'Independent, thorough audits that build trust with investors, '
-          'banks and regulators.',
+          'Transparent, thorough financial assurance designed to secure '
+          'investor confidence and safeguard your marketplace reputation.',
       description:
-          'Our audits go beyond ticking boxes. We review your processes and '
-          'controls, flag risks early and help you meet every statutory '
-          'requirement with confidence.',
+          'An audit should protect your future, not just document your past. '
+          'We partner with your organization to evaluate controls, isolate '
+          'potential financial risks early, and give your leadership the '
+          'insights needed to fulfill compliance duties confidently.',
       includes: [
-        'Statutory audit under the Companies Act',
+        'Statutory audit (companies, LLPs, firms, trusts, societies)',
         'Tax audit',
-        'Internal audit and process review',
-        'Stock and fixed-asset verification',
-        'ROC and regulatory compliance',
+        'Internal audit and risk-based audit',
+        'GST audit and reconciliation audit',
+        'Stock and inventory audit',
+        'Management and operational audit',
+        'Concurrent audit (banks)',
+        'Due diligence: financial, tax, legal',
+        'Certification work: net worth, turnover, FEMA/FC-GPR, UDIN-based '
+            'certificates',
+        'Internal financial controls review',
+        'Forensic review and special audits',
       ],
       icon: Icons.verified_user_outlined,
       color: AppColors.primary,
       image: AppAssets.serviceAudit,
+      sections: [
+        ServiceSection(
+          eyebrow: 'Why It Matters',
+          title: 'Why Audit & Assurance Matter',
+          subtitle: 'An independent review gives owners, lenders and '
+              'regulators confidence in your numbers.',
+          points: [
+            ServicePoint(
+              icon: Icons.verified_user_outlined,
+              title: 'Meet legal requirements',
+              text: 'Many businesses must be audited under the law. A timely '
+                  'audit keeps you compliant.',
+            ),
+            ServicePoint(
+              icon: Icons.lock_outline_rounded,
+              title: 'Build trust',
+              text: 'Audited financial statements give lenders, investors, '
+                  'customers and partners confidence in your reporting.',
+            ),
+            ServicePoint(
+              icon: Icons.warning_amber_rounded,
+              title: 'Spot risks early',
+              text: 'An independent review finds control gaps, errors and '
+                  'unusual items before they grow into bigger problems.',
+            ),
+            ServicePoint(
+              icon: Icons.rule_rounded,
+              title: 'Stronger internal controls',
+              text: 'Process reviews show where approvals, checks and '
+                  'records can be tightened.',
+            ),
+            ServicePoint(
+              icon: Icons.shield_outlined,
+              title: 'Prevent errors and misuse',
+              text: 'Regular checks on stock, assets and transactions help '
+                  'detect mistakes and discourage misuse.',
+            ),
+            ServicePoint(
+              icon: Icons.description_outlined,
+              title: 'Ready for questions',
+              text: 'Audited, well-documented accounts make it easier to '
+                  'answer queries from banks, tax authorities and '
+                  'regulators.',
+            ),
+          ],
+        ),
+      ],
     ),
     ServiceModel(
       slug: 'corporate-services',
       title: 'Corporate Services',
       tagline: 'Incorporation | Annual Filings | Director Compliance',
       summary:
-          'Company setup and every ROC filing, director change and KYC, '
-          'handled on time.',
+          'Seamless entity incorporation, proactive ROC compliance '
+          'management, and strategic corporate secretarial workflows.',
       description:
-          'Starting a company is only the first step. We take care of your '
-          'incorporation and then every Registrar of Companies filing, '
-          'director change and KYC that follows, so your company stays '
-          'compliant and your directors stay in good standing.',
+          'Beyond setting up your business, we protect its legal foundation. '
+          'We oversee every critical milestone—including incorporation '
+          'logistics, routine filings, board changes, and statutory KYC '
+          'protocols—ensuring your enterprise maintains an unblemished, fully '
+          'compliant standing.',
       includes: [
-        'Company, LLP and One Person Company incorporation',
-        'Annual ROC filings and other ROC related work',
-        'Director appointment, resignation and changes',
-        'DIN application and Director KYC filings',
-        'Share allotment, transfer and capital changes',
-        'Registered office, name and MOA/AOA changes',
-        'Auditor appointment, board and general meeting support',
-        'Strike-off and closure of inactive companies',
+        'Company, LLP, OPC, Section 8 and partnership registration',
+        'ROC annual filings: AOC-4, MGT-7, ADT-1, DIR-3 KYC',
+        'Director appointment and resignation',
+        'Share transfers and allotment (PAS-3)',
+        'Maintenance of statutory registers and board/AGM minutes '
+            '(secretarial support)',
+        'Increase in authorised capital, MOA/AOA amendments, change of '
+            'name, address or object',
+        'Company or LLP closure: strike-off, winding up',
+        'Other registrations: PAN/TAN, MSME (Udyam), IEC, Shops & '
+            'Establishment, FSSAI, PF/ESI, Professional Tax, trademark',
+        'Compliance calendar and annual compliance retainer',
+        'FEMA/RBI filings: FLA return, FC-GPR, FC-TRS',
+        'Foreign company setup and Indian subsidiary registration',
       ],
       icon: Icons.apartment_rounded,
       color: Color(0xFFB8593A),
       image: AppAssets.serviceCorporate,
       sections: [
+        ServiceSection(
+          eyebrow: 'Why It Matters',
+          title: 'Why Corporate Compliance Matters',
+          subtitle: 'Incorporation is only the start. Every year brings '
+              'filings that keep your company active and your directors in '
+              'good standing.',
+          points: [
+            ServicePoint(
+              icon: Icons.event_busy_outlined,
+              title: 'Avoid late fees',
+              text: 'Missed ROC filings can attract additional fees that '
+                  'build up with every day of delay.',
+            ),
+            ServicePoint(
+              icon: Icons.person_off_outlined,
+              title: 'Protect your directors',
+              text: 'Continued non-filing can lead to director '
+                  'disqualification and limits on future directorships.',
+            ),
+            ServicePoint(
+              icon: Icons.business_center_outlined,
+              title: 'Keep the company active',
+              text: 'A company that stops filing risks being marked '
+                  'inactive or even struck off the register.',
+            ),
+            ServicePoint(
+              icon: Icons.groups_2_outlined,
+              title: 'Credibility with others',
+              text: 'Banks, investors and clients often check your ROC '
+                  'records before doing business with you.',
+            ),
+            ServicePoint(
+              icon: Icons.folder_shared_outlined,
+              title: 'Clear ownership records',
+              text: 'Accurate share, director and registered-office records '
+                  'avoid disputes and confusion later.',
+            ),
+            ServicePoint(
+              icon: Icons.trending_up_rounded,
+              title: 'Ready to grow',
+              text: 'A compliant company can raise funds, bring in partners '
+                  'and expand with fewer hurdles.',
+            ),
+          ],
+        ),
         ServiceSection(
           eyebrow: 'Corporate Services',
           title: 'Company Law & ROC Compliance',
@@ -414,23 +648,77 @@ class ServiceModel {
       title: 'Business Advisory',
       tagline: 'Startups | Growth Strategy | Financial Planning',
       summary:
-          'Practical guidance to start, structure and grow your business '
-          'the right way.',
+          'Expert advisory architecture designed to launch, structure, and '
+          'scale your business with maximum financial efficiency.',
       description:
-          'Whether you are registering a new venture or planning your next '
-          'stage of growth, we help you choose the right structure, '
-          'prepare projections and arrange funding.',
+          'From legal entity formation to long-term commercial execution, we '
+          'bridge the gap between planning and performance. Our advisory '
+          'suite optimizes your legal structure, builds robust pitch-ready '
+          'financial models, and streamlines the capital fundraising process '
+          'to unlock your enterprise\'s true market potential.',
       includes: [
-        'Tax and business advisory',
-        'Choosing the right structure: Private Limited, LLP or partnership',
-        'Preparation of projections and business plans',
-        'Startup India and MSME registration',
-        'Project financing and loan documentation',
-        'Budgeting and financial planning',
+        'Business structuring (proprietorship, LLP, Pvt Ltd, OPC) and '
+            'entity selection',
+        'Business and project reports for bank loans (CMA data, DPR)',
+        'Loan and funding assistance: MSME, Mudra, working capital',
+        'Startup advisory: valuation, fundraising support',
+        'Financial planning, budgeting and forecasting',
+        'Virtual CFO services',
+        'Cost optimisation and profitability analysis',
+        'Valuation of shares and businesses',
+        'Mergers, restructuring and succession planning',
+        'Franchise and expansion advisory',
+        'FEMA and foreign investment advisory',
       ],
       icon: Icons.groups_2_outlined,
       color: Color(0xFF2F7A70),
       image: AppAssets.serviceAdvisory,
+      sections: [
+        ServiceSection(
+          eyebrow: 'Why It Matters',
+          title: 'Why Business Advisory Matters',
+          subtitle: 'The right guidance early on saves cost, time and rework '
+              'as your business grows.',
+          points: [
+            ServicePoint(
+              icon: Icons.account_tree_outlined,
+              title: 'Choose the right structure',
+              text: 'Proprietorship, partnership, LLP or company: the right '
+                  'choice affects liability, tax, compliance and funding.',
+            ),
+            ServicePoint(
+              icon: Icons.timeline_rounded,
+              title: 'Plan with projections',
+              text: 'Realistic projections and business plans show what your '
+                  'business needs and what it can deliver.',
+            ),
+            ServicePoint(
+              icon: Icons.account_balance_outlined,
+              title: 'Smoother funding',
+              text: 'Well-prepared projections and documentation make loan '
+                  'and investor discussions easier.',
+            ),
+            ServicePoint(
+              icon: Icons.rocket_launch_outlined,
+              title: 'Use startup benefits',
+              text: 'Registrations such as Startup India and MSME can open '
+                  'up schemes and benefits you may be eligible for.',
+            ),
+            ServicePoint(
+              icon: Icons.pie_chart_outline_rounded,
+              title: 'Keep spending on track',
+              text: 'Budgeting and financial planning keep costs under '
+                  'control and prepare you for growth.',
+            ),
+            ServicePoint(
+              icon: Icons.lightbulb_outline_rounded,
+              title: 'Avoid costly mistakes',
+              text: 'An early conversation on tax and structure can prevent '
+                  'expensive changes later.',
+            ),
+          ],
+        ),
+      ],
     ),
   ];
 }

@@ -14,10 +14,12 @@ class HomeHero extends StatelessWidget {
     return HeroBanner(
       image: AppAssets.homeHero,
       eyebrow: 'Trust   |   Compliance   |   Growth',
-      title: 'Clarity in Finance.\nConfidence in Every Decision',
-      body: 'Your trusted partner for end-to-end financial, compliance and '
-          'business advisory services. We help individuals and businesses '
-          'grow with clarity, compliance and confidence.',
+      title: 'Your Financial\nGoals, Our Expertise',
+      body: 'At Sri Fin Astra, we believe that trust, integrity, and expertise are the foundation of every successful financial partnership.' 
+      'We provide personalized financial and compliance solutions while prioritizing the security and confidentiality of your information.' 
+      'From strategic tax planning and regulatory compliance to corporate advisory and sustainable business growth, '
+      'we deliver reliable guidance and tailored solutions that help you build with confidence and move towards long-term success.',
+      
       action: AppButton(
         label: 'Explore Our Services',
         showArrow: true,

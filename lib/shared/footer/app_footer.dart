@@ -5,6 +5,7 @@ import '../../app/router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text.dart';
 import '../../core/constants/legal_text.dart';
+import '../../core/constants/whatsapp_messages.dart';
 import '../../core/responsive/responsive.dart';
 import '../../core/utils/link_launcher.dart';
 import '../../core/widgets/leaf.dart';
@@ -61,7 +62,10 @@ class AppFooter extends StatelessWidget {
             _SocialIcon(
               tooltip: 'WhatsApp',
               asset: 'assets/icons/social_whatsapp.png',
-              onTap: () => LinkLauncher.whatsapp(AppInfo.phoneRaw, message: 'Hi'),
+              onTap: () => LinkLauncher.whatsapp(
+                AppInfo.phoneRaw,
+                message: WhatsAppMessages.general,
+              ),
             ),
           ],
         ),

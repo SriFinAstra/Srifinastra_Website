@@ -77,7 +77,7 @@ class ServiceDetailsPage extends StatelessWidget {
       children: [
         HeroBanner(
           minHeight: 380,
-          eyebrow: 'Our Services',
+          eyebrow: s.headline ?? 'Our Services',
           title: s.title,
           body: s.summary,
           action: TextButton.icon(

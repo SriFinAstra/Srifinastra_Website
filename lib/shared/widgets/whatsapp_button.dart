@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../core/constants/app_text.dart';
+import '../../core/constants/whatsapp_messages.dart';
 import '../../core/utils/link_launcher.dart';
 
 /// Round WhatsApp button that floats at the bottom-right of every page.
@@ -21,8 +22,7 @@ class WhatsAppButton extends StatelessWidget {
           customBorder: const CircleBorder(),
           onTap: () => LinkLauncher.whatsapp(
             AppInfo.phoneRaw,
-            message: 'Hello ${AppInfo.name}, I would like to know more '
-                'about your services.',
+            message: WhatsAppMessages.general,
           ),
           child: const Padding(
             padding: EdgeInsets.all(14),

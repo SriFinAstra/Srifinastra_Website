@@ -185,6 +185,8 @@ class _ReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final initial = review.name.isEmpty ? '' : review.name[0].toUpperCase();
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -225,22 +227,22 @@ class _ReviewCard extends StatelessWidget {
           const SizedBox(height: 16),
           Row(
             children: [
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 20,
                 backgroundColor: AppColors.mint,
-                child: Icon(Icons.person_rounded, color: AppColors.primary),
+                child: Text(
+                  initial,
+                  style: AppText.title.copyWith(
+                    fontSize: 17,
+                    color: AppColors.primary,
+                  ),
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      review.author,
-                      style: AppText.title.copyWith(fontSize: 15),
-                    ),
-                    Text(review.detail, style: AppText.small),
-                  ],
+                child: Text(
+                  review.name,
+                  style: AppText.title.copyWith(fontSize: 16),
                 ),
               ),
             ],

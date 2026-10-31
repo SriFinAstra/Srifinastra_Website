@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/constants/app_assets.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_text.dart';
+import '../../core/constants/whatsapp_messages.dart';
 import '../../core/responsive/responsive.dart';
 import '../../core/utils/link_launcher.dart';
 import '../../core/widgets/app_button.dart';
@@ -29,21 +29,19 @@ class ContactPage extends StatelessWidget {
           onTap: () => LinkLauncher.call(AppInfo.phoneRaw),
         ),
         _InfoTile(
-          brandIcon: FontAwesomeIcons.whatsapp,
+          assetIcon: 'assets/icons/social_whatsapp.png',
           title: 'WhatsApp us',
           text: 'Send us a message on WhatsApp',
-          onTap: () => LinkLauncher.whatsapp(AppInfo.phoneRaw, message: 'Hi'),
+          onTap: () => LinkLauncher.whatsapp(
+            AppInfo.phoneRaw,
+            message: WhatsAppMessages.general,
+          ),
         ),
         _InfoTile(
           icon: Icons.mail_outline_rounded,
           title: 'Email us',
           text: AppInfo.email,
           onTap: () => LinkLauncher.email(AppInfo.email),
-        ),
-        const _InfoTile(
-          icon: Icons.location_on_outlined,
-          title: 'Visit us',
-          text: 'Hyderabad, Telangana, India',
         ),
         const _InfoTile(
           icon: Icons.schedule_rounded,
@@ -87,17 +85,17 @@ class ContactPage extends StatelessWidget {
 class _InfoTile extends StatelessWidget {
   const _InfoTile({
     this.icon,
-    this.brandIcon,
+    this.assetIcon,
     required this.title,
     required this.text,
     this.onTap,
-  }) : assert(icon != null || brandIcon != null);
+  }) : assert(icon != null || assetIcon != null);
 
   /// A Material icon, or...
   final IconData? icon;
 
-  /// ...a Font Awesome brand icon (e.g. WhatsApp).
-  final FaIconData? brandIcon;
+  /// ...a white PNG icon from assets (tinted to the brand colour).
+  final String? assetIcon;
   final String title;
   final String text;
   final VoidCallback? onTap;
@@ -127,9 +125,16 @@ class _InfoTile extends StatelessWidget {
                     color: AppColors.mint,
                     shape: BoxShape.circle,
                   ),
-                  child: brandIcon != null
-                      ? FaIcon(brandIcon, color: AppColors.primary, size: 20)
-                      : Icon(icon, color: AppColors.primary, size: 21),
+                  child: Center(
+                    child: assetIcon != null
+                        ? Image.asset(
+                            assetIcon!,
+                            width: 22,
+                            height: 22,
+                            color: AppColors.primary,
+                          )
+                        : Icon(icon, color: AppColors.primary, size: 21),
+                  ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -178,6 +183,11 @@ class _ContactFormState extends State<_ContactForm> {
   final _message = TextEditingController();
   String? _service;
 
+  /// Required fields differ by button:
+  /// - Send Email: name + message
+  /// - Send on WhatsApp: name + service + message
+  bool _forWhatsApp = false;
+
   static final _emailPattern = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
   @override
@@ -193,11 +203,11 @@ class _ContactFormState extends State<_ContactForm> {
       (v == null || v.trim().isEmpty) ? 'Required' : null;
 
   /// Returns the enquiry details, or null while the form is invalid.
-  _Enquiry? _collect() {
+  _Enquiry? _collect({required bool forWhatsApp}) {
+    _forWhatsApp = forWhatsApp;
     if (!(_formKey.currentState?.validate() ?? false)) return null;
-    final service = (_service == null || _service == 'Other') ? null : _service;
     return (
-      service: service,
+      service: _service,
       name: _name.text.trim(),
       email: _email.text.trim(),
       phone: _phone.text.trim(),
@@ -213,8 +223,8 @@ class _ContactFormState extends State<_ContactForm> {
       ..writeln(d.message)
       ..writeln()
       ..writeln('Regards,')
-      ..writeln(d.name)
-      ..writeln('Email: ${d.email}');
+      ..writeln(d.name);
+    if (d.email.isNotEmpty) b.writeln('Email: ${d.email}');
     if (d.phone.isNotEmpty) b.writeln('Phone: ${d.phone}');
     if (d.service != null) b.writeln('Service: ${d.service}');
     return b.toString().trim();
@@ -228,21 +238,22 @@ class _ContactFormState extends State<_ContactForm> {
   }
 
   Future<void> _sendEmail() async {
-    final d = _collect();
+    final d = _collect(forWhatsApp: false);
     if (d == null) return;
 
+    final topic = (d.service == null || d.service == 'Other') ? null : d.service;
     await LinkLauncher.email(
       AppInfo.email,
-      subject: d.service == null
+      subject: topic == null
           ? 'Website enquiry - ${d.name}'
-          : 'Website enquiry: ${d.service} - ${d.name}',
+          : 'Website enquiry: $topic - ${d.name}',
       body: _compose(d),
     );
     _notify('Opening your email app to send the message...');
   }
 
   Future<void> _sendWhatsApp() async {
-    final d = _collect();
+    final d = _collect(forWhatsApp: true);
     if (d == null) return;
 
     await LinkLauncher.whatsapp(AppInfo.phoneRaw, message: _compose(d));
@@ -260,12 +271,12 @@ class _ContactFormState extends State<_ContactForm> {
     );
     final emailField = TextFormField(
       controller: _email,
-      decoration: const InputDecoration(labelText: 'Email'),
+      decoration: const InputDecoration(labelText: 'Email (optional)'),
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       validator: (v) {
-        if (_required(v) != null) return 'Required';
-        return _emailPattern.hasMatch(v!.trim()) ? null : 'Enter a valid email';
+        if (v == null || v.trim().isEmpty) return null;
+        return _emailPattern.hasMatch(v.trim()) ? null : 'Enter a valid email';
       },
     );
     final phoneField = TextFormField(
@@ -276,7 +287,10 @@ class _ContactFormState extends State<_ContactForm> {
     );
     final serviceField = DropdownButtonFormField<String>(
       isExpanded: true,
-      decoration: const InputDecoration(labelText: 'Service'),
+      decoration:
+          const InputDecoration(labelText: 'Service (required for WhatsApp)'),
+      validator: (v) =>
+          (_forWhatsApp && v == null) ? 'Please select a service' : null,
       items: [
         for (final s in ServiceModel.all)
           DropdownMenuItem(value: s.title, child: Text(s.title)),
@@ -343,7 +357,7 @@ class _ContactFormState extends State<_ContactForm> {
                 ),
                 AppButton(
                   label: 'Send on WhatsApp',
-                  variant: AppButtonVariant.outline,
+                  showArrow: true,
                   onPressed: _sendWhatsApp,
                 ),
               ],

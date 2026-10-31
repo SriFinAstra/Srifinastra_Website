@@ -169,7 +169,7 @@ class _ServiceRow extends StatelessWidget {
           variant: AppButtonVariant.outline,
           compact: true,
           showArrow: true,
-          onPressed: () => context.go(AppRoutes.service(s.slug)),
+          onPressed: () => context.push(AppRoutes.service(s.slug)),
         ),
       ],
     );

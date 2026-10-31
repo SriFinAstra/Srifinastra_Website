@@ -34,7 +34,7 @@ class _ServiceCardState extends State<ServiceCard> {
       onEnter: (_) => setState(() => _hover = true),
       onExit: (_) => setState(() => _hover = false),
       child: GestureDetector(
-        onTap: () => context.go(AppRoutes.service(s.slug)),
+        onTap: () => context.push(AppRoutes.service(s.slug)),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOut,

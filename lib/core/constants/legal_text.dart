@@ -33,9 +33,9 @@ class LegalText {
   static const privacy = LegalDoc(
     title: 'Privacy Policy',
     updated: _updated,
-    intro: '${AppInfo.name} is a firm of Chartered Accountants based in '
-        'Hyderabad. This policy explains what information we collect '
-        'through this website and how we handle it.',
+    intro: '${AppInfo.name} is a firm of Chartered Accountants. This policy '
+        'explains what information we collect through this website and how '
+        'we handle it.',
     sections: [
       LegalSection('Information we collect', [
         'We collect only what you choose to share when you contact us: your '
@@ -135,8 +135,8 @@ class LegalText {
             'its content.',
       ]),
       LegalSection('Governing law', [
-        'These terms are governed by the laws of India. Any dispute is '
-            'subject to the courts at Hyderabad, Telangana.',
+        'These terms are governed by the laws of India, and any dispute is '
+            'subject to the courts of competent jurisdiction.',
       ]),
       LegalSection('Changes and contact', [
         'We may update these terms from time to time. For any question, '

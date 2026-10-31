@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/app_assets.dart';
-import '../../../core/constants/app_text.dart';
 import '../../../core/responsive/responsive.dart';
 import '../../../core/widgets/app_image.dart';
 import '../../../core/widgets/section_container.dart';
@@ -23,14 +22,13 @@ class OurStory extends StatelessWidget {
       ),
     );
 
-    // TODO: replace with the firm's real story (founding year, partners).
     const text = SectionTitle(
       title: 'Our Story',
-      subtitle: 'Founded with a vision to simplify complex financial matters, '
-          '${AppInfo.name} has grown into a trusted partner for clients '
-          'across India. We believe in integrity, '
-          'expertise and a client-first approach, ensuring that every '
-          'solution is tailored to your unique financial goals.',
+      subtitle: 'Every financial journey has a destination. At Sri Fin Astra, we help you navigate yours.' 
+          'Founded on the principle of making complex financial landscapes simple and accessible, '
+          'we have evolved into a trusted wealth partner for clients across India. '
+          'We combine data-driven strategy with human-centered planning, '
+          'ensuring your unique life goals remain at the heart of everything we do.'
     );
 
     return SectionContainer(
