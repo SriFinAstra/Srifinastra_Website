@@ -24,7 +24,7 @@ class OurStory extends StatelessWidget {
 
     const text = SectionTitle(
       title: 'Our Story',
-      subtitle: 'Every financial journey has a destination. At Sri Fin Astra, we help you navigate yours.' 
+      subtitle: 'Every financial journey has a destination. At Sri Fin Astra, we help you navigate yours. ' 
           'Founded on the principle of making complex financial landscapes simple and accessible, '
           'we have evolved into a trusted wealth partner for clients across India. '
           'We combine data-driven strategy with human-centered planning, '

@@ -14,7 +14,7 @@ class HomeHero extends StatelessWidget {
     return HeroBanner(
       image: AppAssets.homeHero,
       eyebrow: 'Trust   |   Compliance   |   Growth',
-      title: 'Your Financial\nGoals, Our Expertise',
+      title: 'Clarity in Finance\nConfidence in Every Decision',
       body: 'At Sri Fin Astra, we believe that trust, integrity, and expertise are the foundation of every successful financial partnership.' 
       'We provide personalized financial and compliance solutions while prioritizing the security and confidentiality of your information.' 
       'From strategic tax planning and regulatory compliance to corporate advisory and sustainable business growth, '
